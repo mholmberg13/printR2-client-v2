@@ -6,7 +6,7 @@ import OrderPage from './components/OrderPage.js';
 let baseURL = '';
 
 if (process.env.NODE_ENV === 'development') {
-    baseURL = 'http://localhost:3004'
+    baseURL = 'http://localhost:5000'
 } else {
     baseURL = 'heroku URL goes here'
 };
@@ -27,6 +27,7 @@ class App extends React.Component {
               err => console.log(err))
               .then(parsedData => this.setState({orders: parsedData}),
               err => console.log(err))
+              console.log(this.state.orders)
   } 
 
   handleAddOrder = (order) => {
@@ -45,10 +46,17 @@ class App extends React.Component {
           baseURL={baseURL}
           handleAddOrder={this.handleAddOrder}
         />
-        <OrderPage
+        <ul>
+          {this.state.orders.map(order => {
+            return (<li key={order._id}>First Name: {order.firstName}</li>)
+          })}
+          
+        </ul>
+        {/* <OrderPage
+          baseURL={baseURL}
           getOrders={this.getOrders}
           parentState={this.state.orders}
-        />
+        /> */}
       </div>
     )
   }

@@ -5,18 +5,14 @@ class OrderPage extends React.Component {
     render() {
         return(
             <div className='order-page-container'>
-                <table>
-                    <tbody>
+                    <ul>
                         { this.props.parentState.map(order => {
                             return (
-                                <tr key={order._id}>
-                                    <td> {order.name }</td>
-                                </tr>
+                                <li key={order._id}>{order.fistName }</li>
                             )
                           })
-                        }
-                    </tbody>
-                </table>
+                        } 
+                    </ul>
             </div>
         )
     }
