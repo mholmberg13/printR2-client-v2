@@ -14,10 +14,11 @@ class NewOrder extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
+        console.log(this.props.baseURL + '/api/orders')
         fetch(this.props.baseURL + '/api/orders', {
             method: 'POST',
             body: JSON.stringify({
-                firstName: this.state.fistName,
+                firstName: this.state.firstName,
                 lastName: this.state.lastName,
                 email: this.state.email,
                 file: this.state.file
