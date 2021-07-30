@@ -46,17 +46,17 @@ class App extends React.Component {
           baseURL={baseURL}
           handleAddOrder={this.handleAddOrder}
         />
-        <ul>
+        {/* <ul>
           {this.state.orders.map(order => {
             return (<li key={order._id}>First Name: {order.firstName}</li>)
           })}
           
-        </ul>
-        {/* <OrderPage
+        </ul> */}
+        <OrderPage
           baseURL={baseURL}
           getOrders={this.getOrders}
           parentState={this.state.orders}
-        /> */}
+        />
       </div>
     )
   }
