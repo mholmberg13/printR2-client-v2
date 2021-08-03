@@ -39,6 +39,17 @@ class App extends React.Component {
     })
   }
 
+  deleteOrder = (id) => {
+    fetch(baseURL + '/api/orders/' + id, {
+      method: 'DELETE'
+    }).then( res => {
+      const findIndex = this.state.orders.findIndex(order => order._id === id)
+      const copyOrders = [...this.state.orders]
+      copyOrders.splice(findIndex, 1)
+      this.setState({orders: copyOrders})
+    })
+  }
+
   render() {
     return (
       <div className='App'>
@@ -46,12 +57,6 @@ class App extends React.Component {
           baseURL={baseURL}
           handleAddOrder={this.handleAddOrder}
         />
-        {/* <ul>
-          {this.state.orders.map(order => {
-            return (<li key={order._id}>First Name: {order.firstName}</li>)
-          })}
-          
-        </ul> */}
         <OrderPage
           baseURL={baseURL}
           getOrders={this.getOrders}
