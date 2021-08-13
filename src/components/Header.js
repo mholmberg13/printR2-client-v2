@@ -10,8 +10,7 @@ class Header extends React.Component {
                 <ul className='nav'>
                     <li>Home</li>
                     <li>Orders</li>
-                    <li>About</li>
-                    <li>Contact Us</li>
+                    <li>Settings</li>
                 </ul>
             </div>
         )

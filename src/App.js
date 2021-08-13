@@ -39,10 +39,56 @@ class App extends React.Component {
     })
   }
 
+  handleUpdateOrder = (order) => {
+    fetch(baseURL + 'api/orders/' + order._id, {
+      method: 'PUT',
+      body: JSON.stringify({
+        firstName: order.firstName,
+        lastName: order.lastName,
+        email: order.email,
+        file: order.file,
+        qty: order.qty,
+        status: order.status
+      }),
+      headers: {
+          'Content-Type' : 'application/json'
+      }
+    }).then(res => res.json())
+    .then(resJson => {
+        const copyOrders = [...this.state.orders]
+        const findIndex = this.state.orders.findIndex(order => order._id === resJson._id)
+        copyOrders[findIndex].firstName = resJson.firstName
+        copyOrders[findIndex].lastName = resJson.lastName
+        copyOrders[findIndex].email = resJson.email
+        copyOrders[findIndex].file = resJson.file
+        copyOrders[findIndex].qty = resJson.qty
+        copyOrders[findIndex].status = resJson.status
+        this.setState({orders: copyOrders})
+    })
+  }
+
+  handleOrderToggle = (order) => {
+    fetch(baseURL + '/api/orders/' + order._id, {
+      method: 'PUT',
+      body: JSON.stringify({
+        status: order.status
+      }),
+      headers: {
+          'Content-Type' : 'application/json'
+      }
+    }).then(res => res.json())
+    .then(resJson => {
+        const copyOrders = [...this.state.orders]
+        const findIndex = this.state.orders.findIndex(order => order._id === order)
+        copyOrders[findIndex].status = 'Started'
+        this.setState({orders: copyOrders})
+    })
+  }
+
   deleteOrder = (id) => {
     fetch(baseURL + '/api/orders/' + id, {
       method: 'DELETE'
-    }).then( res => {
+    }).then( response => {
       const findIndex = this.state.orders.findIndex(order => order._id === id)
       const copyOrders = [...this.state.orders]
       copyOrders.splice(findIndex, 1)
@@ -61,6 +107,8 @@ class App extends React.Component {
           baseURL={baseURL}
           getOrders={this.getOrders}
           parentState={this.state.orders}
+          deleteOrder={this.deleteOrder}
+          toggleOrder={this.handleOrderToggle}
         />
       </div>
     )

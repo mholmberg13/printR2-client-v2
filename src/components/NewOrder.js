@@ -5,7 +5,9 @@ class NewOrder extends React.Component {
         firstName: '',
         lastName: '',
         email: '',
-        file: ''
+        file: '',
+        qty: 0,
+        status: 'Pending'
     }
 
     handleChange = (event) => {
@@ -21,7 +23,9 @@ class NewOrder extends React.Component {
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
                 email: this.state.email,
-                file: this.state.file
+                file: this.state.file,
+                qty: this.state.qty,
+                status: this.state.status
                 }),
             headers: {
                 'Content-Type': 'application/json'
@@ -33,7 +37,9 @@ class NewOrder extends React.Component {
                     firstName: '',
                     lastName: '',
                     email: '',
-                    file: ''
+                    file: '',
+                    qty: 0,
+                    status: ''
               })
           }).catch (error => console.log({'Error': error}))  
     }
@@ -50,6 +56,8 @@ class NewOrder extends React.Component {
                     <input type="text" id="email" name="email" onChange={this.handleChange} value={this.state.email} placeholder="Email"/>
                     <label htmlFor="file"></label>
                     <input type="text" id="file" name="file" onChange={this.handleChange} value={this.state.file} placeholder="File"/>
+                    <label htmlFor="qty"></label>
+                    <input type="text" id="qty" name="qty" onChange={this.handleChange} value={this.state.qty} placeholder="0"/>
                     <input type="submit" value="Submit Order"/>
                 </form>`
             </div>
