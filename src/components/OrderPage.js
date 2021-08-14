@@ -14,7 +14,7 @@ class OrderPage extends React.Component {
                         return (<li key={order._id}>First Name: {order.firstName} - Status: {order.status}
                         <button onClick={()=>this.props.deleteOrder(order._id)}>Delete</button>
                         <button onClick={()=>this.props.toggleOrder(order)}>Start</button>
-                        <button>Complete</button>
+                        <button onClick={()=>this.props.toggleOrder(order)}>Complete</button>
                         </li>)
                     })}
                 </ul>

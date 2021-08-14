@@ -68,10 +68,12 @@ class App extends React.Component {
   }
 
   handleOrderToggle = (order) => {
+    let stat = ''
+    order.status === 'Pending' ? stat = 'Started' : stat = 'Complete'
     fetch(baseURL + '/api/orders/' + order._id, {
       method: 'PUT',
       body: JSON.stringify({
-        status: order.status
+        status: stat
       }),
       headers: {
           'Content-Type' : 'application/json'
@@ -79,8 +81,8 @@ class App extends React.Component {
     }).then(res => res.json())
     .then(resJson => {
         const copyOrders = [...this.state.orders]
-        const findIndex = this.state.orders.findIndex(order => order._id === order)
-        copyOrders[findIndex].status = 'Started'
+        const findIndex = this.state.orders.findIndex(order => order._id === resJson._id)
+        copyOrders[findIndex].status = stat
         this.setState({orders: copyOrders})
     })
   }
