@@ -39,33 +39,33 @@ class App extends React.Component {
     })
   }
 
-  handleUpdateOrder = (order) => {
-    fetch(baseURL + 'api/orders/' + order._id, {
-      method: 'PUT',
-      body: JSON.stringify({
-        firstName: order.firstName,
-        lastName: order.lastName,
-        email: order.email,
-        file: order.file,
-        qty: order.qty,
-        status: order.status
-      }),
-      headers: {
-          'Content-Type' : 'application/json'
-      }
-    }).then(res => res.json())
-    .then(resJson => {
-        const copyOrders = [...this.state.orders]
-        const findIndex = this.state.orders.findIndex(order => order._id === resJson._id)
-        copyOrders[findIndex].firstName = resJson.firstName
-        copyOrders[findIndex].lastName = resJson.lastName
-        copyOrders[findIndex].email = resJson.email
-        copyOrders[findIndex].file = resJson.file
-        copyOrders[findIndex].qty = resJson.qty
-        copyOrders[findIndex].status = resJson.status
-        this.setState({orders: copyOrders})
-    })
-  }
+  // handleUpdateOrder = (order) => {
+  //   fetch(baseURL + 'api/orders/' + order._id, {
+  //     method: 'PUT',
+  //     body: JSON.stringify({
+  //       firstName: order.firstName,
+  //       lastName: order.lastName,
+  //       email: order.email,
+  //       file: order.file,
+  //       qty: order.qty,
+  //       status: order.status
+  //     }),
+  //     headers: {
+  //         'Content-Type' : 'application/json'
+  //     }
+  //   }).then(res => res.json())
+  //   .then(resJson => {
+  //       const copyOrders = [...this.state.orders]
+  //       const findIndex = this.state.orders.findIndex(order => order._id === resJson._id)
+  //       copyOrders[findIndex].firstName = resJson.firstName
+  //       copyOrders[findIndex].lastName = resJson.lastName
+  //       copyOrders[findIndex].email = resJson.email
+  //       copyOrders[findIndex].file = resJson.file
+  //       copyOrders[findIndex].qty = resJson.qty
+  //       copyOrders[findIndex].status = resJson.status
+  //       this.setState({orders: copyOrders})
+  //   })
+  // }
 
   handleOrderToggle = (order) => {
     let stat = ''
