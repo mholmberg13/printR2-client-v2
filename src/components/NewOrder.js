@@ -47,12 +47,12 @@ class NewOrder extends React.Component {
     handleSubmitTwo = (e) => {
         e.preventDefault()
         const formData = new FormData()
-        formData.append('firstName', NewOrder.firstName)
-        formData.append('lastName', NewOrder.lastName)
-        formData.append('email', NewOrder.email)
-        formData.append('file', NewOrder.file)
-        formData.append('qty', NewOrder.qty)
-        formData.append('status', NewOrder.status)
+        formData.append('firstName', this.state.firstName)
+        formData.append('lastName', this.state.lastName)
+        formData.append('email', this.state.email)
+        formData.append('file', this.state.file)
+        formData.append('qty', this.state.qty)
+        formData.append('status', this.state.status)
 
         fetch(this.props.baseURL + '/api/orders', {
             method: 'POST',
