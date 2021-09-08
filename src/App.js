@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import NewOrder from './components/NewOrder.js';
 import OrderPage from './components/OrderPage.js';
+import CloudinaryUploadWidget from "./components/FileUploader.js";
 
 let baseURL = '';
 
@@ -105,6 +106,7 @@ class App extends React.Component {
           baseURL={baseURL}
           handleAddOrder={this.handleAddOrder}
         />
+        {/* <CloudinaryUploadWidget/> */}
         <OrderPage
           baseURL={baseURL}
           getOrders={this.getOrders}
