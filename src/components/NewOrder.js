@@ -36,7 +36,8 @@ class NewOrder extends React.Component {
     //          })       
     // }
 
-    processFile = (e) => {			
+    processFile = (e) => {
+        this.setState({ [e.target.id]: e.target.value})			
         var file = e.target.files[0]
         var formdata = new FormData();
 
@@ -56,8 +57,7 @@ class NewOrder extends React.Component {
         // xhr.send(formdata);		
     }
 
-    sendFile = (e) => {
-        e.preventDefault()
+    sendFile = () => {
         var xhr = new XMLHttpRequest();
         xhr.open('POST', "https://api.cloudinary.com/v1_1/matt-holmberg/upload",true);
         
@@ -88,15 +88,16 @@ class NewOrder extends React.Component {
     //         }
     //     }).then (res => res.json())
     //       .then(resJson => {
-    //           this.props.handleAddOrder(resJson)
-    //           this.setState({
-    //                 firstName: '',
-    //                 lastName: '',
-    //                 email: '',
-    //                 file: '',
-    //                 qty: 0,
-    //                 status: ''
-    //           })
+    //         this.sendFile()
+    //         this.props.handleAddOrder(resJson)
+    //         this.setState({
+    //             firstName: '',
+    //             lastName: '',
+    //             email: '',
+    //             file: '',
+    //             qty: 0,
+    //             status: ''
+    //         })
     //       }).catch (error => console.log({'Error': error}))  
     // }
 
@@ -117,22 +118,23 @@ class NewOrder extends React.Component {
         }).then(res => res.json())
         .then(resJson => {
             this.props.handleAddOrder(resJson)
+            this.props.getOrders()
               this.setState({
                     firstName: '',
                     lastName: '',
                     email: '',
                     file: '',
                     qty: 0,
-                    status: ''
+                    status: 'Pending'
               })
         }).then(this.uploadFile).catch (error => console.log({'Error': error}))
-        this.processFile()
+        this.sendFile()
     }
 
     render() {
         return (
             <div className='new-order-container'>
-                <form onSubmit={this.sendFile} encType='multipart/form-data'>
+                <form onSubmit={this.handleSubmitTwo} encType='multipart/form-data'>
                     <label htmlFor="firstName"></label>
                     <input type="text" id="firstName" name="firstName" onChange={this.handleChange} value={this.state.firstName} placeholder="Fist Name"/>
                     <label htmlFor="lastName"></label>

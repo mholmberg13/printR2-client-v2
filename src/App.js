@@ -35,8 +35,7 @@ class App extends React.Component {
     const copyOrders = [...this.state.orders]
     copyOrders.unshift(order)
     this.setState({
-      orders: copyOrders,
-      name: ''
+      orders: copyOrders
     })
   }
 
@@ -105,6 +104,7 @@ class App extends React.Component {
         <NewOrder
           baseURL={baseURL}
           handleAddOrder={this.handleAddOrder}
+          getOrders={this.getOrders}
         />
         {/* <CloudinaryUploadWidget/> */}
         <OrderPage
