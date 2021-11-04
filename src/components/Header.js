@@ -1,5 +1,5 @@
-import { defaultMaxListeners } from 'node:events';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 class Header extends React.Component {
@@ -7,10 +7,9 @@ class Header extends React.Component {
         return (
             <div className='header-contianer'>
                 <h2>Print-R2</h2>
-                <ul className='nav'>
-                    <li>Home</li>
-                    <li>Orders</li>
-                    <li>Settings</li>
+                <ul>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="login">Log-In</Link></li>
                 </ul>
             </div>
         )

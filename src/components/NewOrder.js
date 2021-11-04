@@ -1,5 +1,4 @@
 import React from 'react';
-import Axios from 'axios'
 
 class NewOrder extends React.Component {
     state = {
@@ -17,25 +16,6 @@ class NewOrder extends React.Component {
         this.setState({ [event.target.id]: event.target.value})
     }
 
-    // uploadFile = (e) => {
-    //     e.preventDefault()
-    //     console.log("file uploaded: " + this.state.file)
-    //     const formData = new FormData()
-    //     formData.append("upload_preset", "yruxucxg")
-    //     formData.append("file", this.state.file)
-    //     const config = {
-    //         headers: { "X-Requested-With": "XMLHttpRequest" },
-    //     };
-
-    //     Axios.post(
-    //         "https://api.cloudinary.com/v1_1/matt-holmberg/upload",
-    //          formData,
-    //          config
-    //          ).then((response) => {
-    //              console.log(response)
-    //          })       
-    // }
-
     processFile = (e) => {
         this.setState({ [e.target.id]: e.target.value})			
         var file = e.target.files[0]
@@ -46,15 +26,6 @@ class NewOrder extends React.Component {
         formdata.append('upload_preset', 'yruxucxg');
 
         this.data = formdata
-        
-        // var xhr = new XMLHttpRequest();
-        // xhr.open('POST', "https://api.cloudinary.com/v1_1/matt-holmberg/upload",true);
-        
-        // xhr.onload = function () {
-        // // do something to response
-        //     console.log(this.responseText);
-        // };
-        // xhr.send(formdata);		
     }
 
     sendFile = () => {
@@ -64,44 +35,13 @@ class NewOrder extends React.Component {
         xhr.onload = function () {
         // do something to response
             console.log(this.responseText);
+
         };
         xhr.send(this.data);
 
     }
 
-
-    // handleSubmit = (event) => {
-    //     event.preventDefault()
-    //     console.log(this.props.baseURL + '/api/orders')
-    //     fetch(this.props.baseURL + '/api/orders', {
-    //         method: 'POST',
-    //         body: JSON.stringify({
-    //             firstName: this.state.firstName,
-    //             lastName: this.state.lastName,
-    //             email: this.state.email,
-    //             file: this.state.file,
-    //             qty: this.state.qty,
-    //             status: this.state.status
-    //             }),
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     }).then (res => res.json())
-    //       .then(resJson => {
-    //         this.sendFile()
-    //         this.props.handleAddOrder(resJson)
-    //         this.setState({
-    //             firstName: '',
-    //             lastName: '',
-    //             email: '',
-    //             file: '',
-    //             qty: 0,
-    //             status: ''
-    //         })
-    //       }).catch (error => console.log({'Error': error}))  
-    // }
-
-    handleSubmitTwo = (e) => {
+    handleSubmit = (e) => {
         e.preventDefault()
         const formData = new FormData()
         formData.append('firstName', this.state.firstName)
@@ -129,12 +69,13 @@ class NewOrder extends React.Component {
               })
         }).then(this.uploadFile).catch (error => console.log({'Error': error}))
         this.sendFile()
+        this.props.getOrders()
     }
 
     render() {
         return (
             <div className='new-order-container'>
-                <form onSubmit={this.handleSubmitTwo} encType='multipart/form-data'>
+                <form onSubmit={this.handleSubmit} encType='multipart/form-data'>
                     <label htmlFor="firstName"></label>
                     <input type="text" id="firstName" name="firstName" onChange={this.handleChange} value={this.state.firstName} placeholder="Fist Name"/>
                     <label htmlFor="lastName"></label>

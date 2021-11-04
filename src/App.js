@@ -1,8 +1,11 @@
 import './App.css';
 import React from 'react';
+import { Route, Routes, Link } from 'react-router-dom';
+import Header from './components/Header.js';
+import Home from './components/Home';
 import NewOrder from './components/NewOrder.js';
 import OrderPage from './components/OrderPage.js';
-import CloudinaryUploadWidget from "./components/FileUploader.js";
+import Login from './components/Login.js'
 
 let baseURL = '';
 
@@ -100,21 +103,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='App'>
-        <NewOrder
-          baseURL={baseURL}
-          handleAddOrder={this.handleAddOrder}
-          getOrders={this.getOrders}
-        />
-        {/* <CloudinaryUploadWidget/> */}
-        <OrderPage
-          baseURL={baseURL}
-          getOrders={this.getOrders}
-          parentState={this.state.orders}
-          deleteOrder={this.deleteOrder}
-          toggleOrder={this.handleOrderToggle}
-        />
-      </div>
+        <div className="app-container">
+          <Home/>
+        </div>
     )
   }
 }
