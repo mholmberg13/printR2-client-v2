@@ -6,8 +6,10 @@ import App from './App';
 import Login from './components/Login';
 import Header from './components/Header';
 import reportWebVitals from './reportWebVitals';
+import DataProvider from './redux/store';
 
 const element = (
+  <DataProvider>
     <Router>
       <Header/>
       <Routes>
@@ -15,6 +17,7 @@ const element = (
         <Route path="/login" element={<Login/>} />
       </Routes>
     </Router>
+  </DataProvider>
 );
 
 const container = document.getElementById('root')
