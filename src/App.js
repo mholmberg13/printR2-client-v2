@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Body from './components/Body';
 import Header from './components/Header'
 import axios from 'axios';
-import { dispatchLogin } from './redux/actions/authAction';
+import { dispatchGetUser, dispatchLogin, fetchUser } from './redux/actions/authAction';
 
 
 let baseURL = '';
@@ -121,6 +121,10 @@ function App() {
     if(token){
       const getUser = () => {
         dispatch(dispatchLogin())
+        
+        return fetchUser(token).then(res => {
+          dispatch(dispatchGetUser(res))
+        })
       }
       getUser()
     }
