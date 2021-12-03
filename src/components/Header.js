@@ -11,10 +11,10 @@ function Header() {
     const {user, isLogged} = auth
 
     const userLink = () => {
-        return <li> 2
-            {/* <Link to='/'>
+        return <li>
+            <Link to='/'>
                 {user.firstName}
-            </Link> */}
+            </Link>
         </li>
     }
 
