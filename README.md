@@ -19,3 +19,7 @@ Each user can create an account with email varification and validation. It will 
 ## Orders
 
 Each Order will contain the user's name, email, order file, and quantity. The order file is referenced in the API and the file itself is stored in Cloudinary. 
+
+## File Uploads
+
+Print-R2 allows STL file uploads. Those files are sent to Cloudinary and referenced in the API. This will also allow drag and drop file uploading.
